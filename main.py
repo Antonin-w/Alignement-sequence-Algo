@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from FonctionsNW_WEBER_Antonin import *  # Import des fonctions dites "fonctionnelles" de l'algorithme
-from Matrices_substitutions_de_base_WEBER_Antonin import *  # Import des matrices de substitutions de base
-from argparse_WEBER_Antonin import *  # Import d'argparse permettant l'interaction directe avec le shell
+from FonctionsNW import *  # Import des fonctions dites "fonctionnelles" de l'algorithme
+from Matrices_substitutions_de_base import *  # Import des matrices de substitutions de base
+from argparseNW import *  # Import d'argparse permettant l'interaction directe avec le shell
 
 args = parser.parse_args()
 

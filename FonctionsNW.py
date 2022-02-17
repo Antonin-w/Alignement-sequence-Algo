@@ -213,5 +213,3 @@ def scores_totaux(matrice_fleche, matrice_score, Seq1, Seq2, type_ali="global"):
     print("Le nombre de gaps est de :", nombre_gaps)
     print("Le score total cet alignement est de :", score_total)
     # Le score total est censé être identique au score de la dernière case de la matrice de score
-
-# WEBER Antonin p2003706 [L3 BISM]

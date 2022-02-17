@@ -24,5 +24,3 @@ parser.add_argument("-l", "--local", action="store_true",                       
 parser.add_argument("-s", "--surprise", action="store_true",
                     help="Petite surprise")
 parser.parse_args()
-
-# WEBER Antonin p2003706 [L3 BISM]

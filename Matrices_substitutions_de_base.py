@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Matrice de substitution Blosum62
-from FonctionsNW_WEBER_Antonin import matrice_de_substitution
+from FonctionsNW import matrice_de_substitution
 
 # Matrice de substitution pour les séquences nucléotidiques
 # Match = 2 ; Missmatch_AG_CT = 1 ; Autre_Missmatch = -1
@@ -29,5 +29,3 @@ blosum62 = {"A":  {"A": 4, "R": -1, "N": -2, "D": -2, "C": 0, "Q": -1, "E": -1, 
             "W":  {"A": -3, "R": -3, "N": -4, "D": -4, "C": -2, "Q": -2, "E": -3, "G": -2, "H": -2, "I": -3, "L": -2, "K": -3, "M": -1, "F": 1, "P": -4, "S": -3, "T": -2, "W": 11, "Y": 2, "V": -3},
             "Y":  {"A": -2, "R": -2, "N": -2, "D": -3, "C": -2, "Q": -1, "E": -2, "G": -3, "H": 2, "I": -1, "L": -1, "K": -2, "M": -1, "F": 3, "P": -3, "S": -2, "T": -2, "W": 2, "Y": 7, "V": -1},
             "V":  {"A": 0, "R": -3, "N": -3, "D": -3, "C": -1, "Q": -2, "E": -2, "G": -3, "H": -3, "I": 3, "L": 1, "K": -2, "M": 1, "F": -1, "P": -2, "S": -2, "T": 0, "W": -3, "Y": -1, "V": 4}}
-
-# WEBER Antonin p2003706 [L3 BISM]
