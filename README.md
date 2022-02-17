@@ -1,4 +1,4 @@
-                  Algorithme d'alignement de séquences - Needleman-Wunsch (1970)
+                  **Algorithme d'alignement de séquences - Needleman-Wunsch (1970)**
 
 
 Ce programme permet d'effectuer un alignement global de deux chaînes de caractères, pouvant être des séquences
@@ -10,19 +10,19 @@ Dans ce README, CHEMIN est à remplacer par le chemin menant au fichier.
 
 
 
-I - Exécuter le programme et afficher l'aide
+# I - Exécuter le programme et afficher l'aide
 
-Afin d'utiliser ce programme, il faut exécuter le main_WEBER_Antonin.py
+Afin d'utiliser ce programme, il faut exécuter le main.py
 Pour cela, dans le terminal, entrez :
-    ./CHEMIN/main_WEBER_Antonin.py
+    ./CHEMIN/main.py
 
-Si vous obtenez le message d'erreur suivant : -bash: ./main_WEBER_Antonin.py: Permission denied
+Si vous obtenez le message d'erreur suivant : -bash: ./main.py: Permission denied
 C'est que vous n'avez pas autoriser l'exécution du fichier, pour cela, entrez la commande suivante :
-     chmod +x CHEMIN/main_WEBER_Antonin.py
+     chmod +x CHEMIN/main.py
 
 Pour obtenir de l'aide via le shell, exécuter le fichier en ajoutant l'option -h ou --help :
-     ./CHEMIN/main_WEBER_Antonin.py --help
-                usage: main_WEBER_Antonin.py [-h] [-o OUVERTURE] [-e EXTENSION] [-a {nucleique,proteique}]
+     ./CHEMIN/main.py --help
+                usage: main.py [-h] [-o OUVERTURE] [-e EXTENSION] [-a {nucleique,proteique}]
                                [-m MATRICE] [-s]
                                s1 s2
 
@@ -48,7 +48,7 @@ L'aide permet d'indiquer les arguments obligatoires, optionnels, ainsi qu'une de
 
 
 
-II- Utiliser le programme avec uniquement les paramètres obligatoires
+# II- Utiliser le programme avec uniquement les paramètres obligatoires
 
 Ce programme dispose de 2 arguments obligatoires : les 2 fichiers contenant chacun une séquence. Ils doivent être
 au format FASTA.
@@ -58,42 +58,43 @@ Exemple d'un fichier format fasta :
      ATCuctacTACGTA
 
 Exemple de commande pour exécuter le programme avec uniquement les 2 arguments obligatoires :
-    ./CHEMIN/main_WEBER_Antonin.py CHEMIN/sequence1.fasta CHEMIN/sequence2.fasta
+    ./CHEMIN/main.py CHEMIN/sequence1.fasta CHEMIN/sequence2.fasta
 
 
 
-III- Utiliser le programme avec des paramètres optionnels
+# III- Utiliser le programme avec des paramètres optionnels
 
-Pour simplifier l'écriture,
-s1 = CHEMIN/sequence1.fasta
-s2 = CHEMIN/sequence2.fasta
+    Pour simplifier l'écriture
+    s1 = CHEMIN/sequence1.fasta
+    s2 = CHEMIN/sequence2.fasta
 
--h ou --help : Comme indiqué precedemment, permet d'afficher la page d'aide
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -h
+    -h ou --help : Comme indiqué precedemment, permet d'afficher la page d'aide
+        ./CHEMIN/main.py s1 s2 -h
+    
+    -o ou --ouverture : Permet de changer la penalite d'ouverture de gap (valeur par défaut = -10)
+        ./CHEMIN/main.py s1 s2 -o -11   # Indique une penalite d'ouverture de gap de -11
+    
+    -e ou --extension : Permet de changer la penalite d'extension de gap (valeur par défaut = -1)
+        ./CHEMIN/main.py s1 s2 -e -2    # Indique une penalite d'extension de gap de -2
+    
+    -a ou --alignement : Permet de renseigner le type de séquence à aligner
+                         Il y a uniquement deux choix à entrer : nucleique ou proteique
+                         Par défaut, le type de séquences à aligner est nucleique
+        ./CHEMIN/main.py s1 s2 -a proteique     # Indique qu'il s'agit d'un alignement proteique, pas besoin de renseigner
+                                                # dans le cas d'un alignement nucleique
+    
+    -m ou --matrice  : Permet de renseigner un le chemin d'un fichier contenant une matrice de substitution personalisée
+                       La variable dans le fichier contenant la matrice de substitution doit impérativement
+                       s'appeler "matrice". Elle doit être de la forme dictionnaire dans dictionnaire. Le fichier doit
+                       être au format python.
 
--o ou --ouverture : Permet de changer la penalite d'ouverture de gap (valeur par défaut = -10)
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -o -11   # Indique une penalite d'ouverture de gap de -11
-
--e ou --extension : Permet de changer la penalite d'extension de gap (valeur par défaut = -1)
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -e -2    # Indique une penalite d'extension de gap de -2
-
--a ou --alignement : Permet de renseigner le type de séquence à aligner
-                     Il y a uniquement deux choix à entrer : nucleique ou proteique
-                     Par défaut, le type de séquences à aligner est nucleique
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -a proteique     # Indique qu'il s'agit d'un alignement proteique, pas besoin de renseigner
-                                            # dans le cas d'un alignement nucleique
-
--m ou --matrice  : Permet de renseigner un le chemin d'un fichier contenant une matrice de substitution personalisée
-                   La variable dans le fichier contenant la matrice de substitution doit impérativement
-                   s'appeler "matrice". Elle doit être de la forme dictionnaire dans dictionnaire. Le fichier doit
-                   être au format python.
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -m CHEMIN/FICHIER    # Remplacer FICHIER par le nom du fichier contenant la matrice
+./CHEMIN/main.py s1 s2 -m CHEMIN/FICHIER    # Remplacer FICHIER par le nom du fichier contenant la matrice
 
                    Par défaut, la matrice pour l'alignement des séquences nucléotidique est la suivante :
                    	 A 	 {'A': 2, 'C': -1, 'G': 1, 'T': -1}
-	                 C 	 {'A': -1, 'C': 2, 'G': -1, 'T': 1}
-	                 G 	 {'A': 1, 'C': -1, 'G': 2, 'T': -1}
-	                 T 	 {'A': -1, 'C': 1, 'G': -1, 'T': 2}
+                   	 C 	 {'A': -1, 'C': 2, 'G': -1, 'T': 1}
+                   	 G 	 {'A': 1, 'C': -1, 'G': 2, 'T': -1}
+                   	 T 	 {'A': -1, 'C': 1, 'G': -1, 'T': 2}
 
 	               Par défaut, la matrice pour l'alignement des séquences protéique est BLOSUM62.
 	               C'est l'une des plus adaptées pour detecter les plus faibles similaritées protéiques.
@@ -130,34 +131,34 @@ s2 = CHEMIN/sequence2.fasta
                     "V":  {"A": 0, "R": -1, "N": -3, "D": -3, "C": -1, "Q": 1, "E": -2, "G": -3, "H": -3, "I": 3, "L": 1, "K": -2, "M": 1, "F": -1, "P": -2, "S": -2, "T": 0, "W": -3, "Y": -1, "V": 4}}
 
 
--l ou --local : En ajoutant ce paramètre, on peut obtenir un alignement local. Sans ce paramètre, par défaut ce sera
-                un alignement global.
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -l
+    -l ou --local : En ajoutant ce paramètre, on peut obtenir un alignement local. Sans ce paramètre, par défaut ce sera
+                    un alignement global.
+        ./CHEMIN/main.py s1 s2 -l
+    
+    -s ou --suprise : Permet d'avoir une surprise, elle fonctionne comme le "--help", il suffit simplement de renseigner
+                      "-s" ou "--surprise".
+        ./CHEMIN/main.py s1 s2 -s
 
--s ou --suprise : Permet d'avoir une surprise, elle fonctionne comme le "--help", il suffit simplement de renseigner
-                  "-s" ou "--surprise".
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -s
 
-
-Exemples concrets :
+## Exemples concrets :
 
 Si vous souhaitez faire un alignement global avec un penalite d'ouverture de gap de -5, d'extension de -2, de sequences
 protéiques avec la matrice de substitution Blosum62 :
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -o -5 -e -2 -a proteique
+    ./CHEMIN/main.py s1 s2 -o -5 -e -2 -a proteique
 
 Si vous souhaitez faire un alignement global avec un penalite d'ouverture de gap de -8, d'extension de -1, de sequences
 nucleiques avec une matrice de substitution personalisée et une surprise à la fin :
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -o -8 -m CHEMIN/FICHIER -s
+    ./CHEMIN/main.py s1 s2 -o -8 -m CHEMIN/FICHIER -s
 
 Si vous souhaitez faire un alignement locale avec en penalite de gap de -1, d'extension de -1, de séquence nucléotidiques
 avec la matrice de substitution de base :
-    ./CHEMIN/main_WEBER_Antonin.py s1 s2 -o -1 -l
+    ./CHEMIN/main.py s1 s2 -o -1 -l
 
 
 
-IV - Interpretation des résultats
+# IV - Interpretation des résultats
 
-    ./main_WEBER_Antonin.py sequence1.fasta sequence2.fasta
+    ./main.py sequence1.fasta sequence2.fasta
 
 Les premières lignes récapitulent les paramètres utilisés pour faire l'alignement :
 
@@ -171,66 +172,66 @@ Une extension de gap retire une penalite de -1    # La penalite d'extension de g
 Alignement de sequences nucleique                 # Le type de sequences a aligner (acides nucleiques ou proteiques)
 Alignement global                                 # Le type d'alignement : global ou local
 
-Matrice de substitution :                         # La matrice de substitution utilisée
+La matrice de substitution utilisée
 
-	 A 	 {'A': 2, 'C': -1, 'G': 1, 'T': -1}
-	 C 	 {'A': -1, 'C': 2, 'G': -1, 'T': 1}
-	 G 	 {'A': 1, 'C': -1, 'G': 2, 'T': -1}
-	 T 	 {'A': -1, 'C': 1, 'G': -1, 'T': 2}
+                   Matrice de substitution :
+                   A {'A': 2, 'C': -1, 'G': 1, 'T': -1}
+                   C 	 {'A': -1, 'C': 2, 'G': -1, 'T': 1}
+                   G 	 {'A': 1, 'C': -1, 'G': 2, 'T': -1}
+                   T 	 {'A': -1, 'C': 1, 'G': -1, 'T': 2}
+
+La matrice de score à partir des paramètres précedents, attention, pour les séquences nucléotidiques, toute la séquence en légende à été mise en majuscule, et les U transformés en T.
+
+                   Matrice de scores :   
+
+    0    0    T    C    G    A    T    C    A    G    T    T    C    A    A    C    T    A    C
+    0    0    -10  -11  -12  -13  -14  -15  -16  -17  -18  -19  -20  -21  -22  -23  -24  -25  -26
+    A    -10  -1   -2   -3   -4   -5   -6   -7   -8   -9   -10  -11  -12  -13  -14  -15  -16  -17
+    T    -11  -2   0    -1   -2   -2   -3   -4   -5   -6   -7   -8   -9   -10  -11  -12  -13  -14
+    C    -12  -3   0    -1   -2   -1   0    -1   -2   -3   -4   -5   -6   -7   -8   -9   -10  -11
+    T    -13  -4   -1   -1   -2   0    0    -1   -2   0    -1   -2   -3   -4   -5   -6   -7   -8
+    T    -14  -5   -2   -2   -2   0    1    0    -1   0    2    1    0    -1   -2   -3   -4   -5
+    C    -15  -6   -3   -3   -3   -1   2    1    0    0    1    4    3    2    1    0    -1   -2
+    A    -16  -7   -4   -2   -1   -4   -2   4    3    -1   -1   0    6    5    4    3    2    1
+    C    -17  -8   -5   -3   -2   0    -2   -3   3    4    0    1    -1   5    7    6    5    4
+    T    -18  -9   -6   -4   -3   0    1    -3   -4   5    6    1    0    -2   6    9    8    7
+    T    -19  -10  -7   -5   -4   -1   1    0    -4   -2   7    7    0    -1   -1   8    8    9
+    C    -20  -11  -8   -6   -5   -2   1    0    -1   -3   -1   9    6    -1   1    0    7    10
+    A    -21  -12  -9   -7   -4   -6   -3   3    1    -2   -4   -1   11   8    -2   0    2    6
+    T    -22  -13  -10  -8   -5   -2   -5   -4   2    3    0    -3   1    10   9    0    -1   3
+    T    -23  -14  -11  -9   -6   -3   -1   -6   -5   4    5    1    -4   0    11   11   1    0
+    A    -24  -15  -12  -10  -7   -4   -2   1    -5   -6   4    4    3    -2   1    10   13   3
+    C    -25  -16  -13  -11  -8   -5   -2   -3   0    -4   -5   6    3    2    0    2    9    15
+    T    -26  -17  -14  -12  -9   -6   -3   -3   -4   2    -2   -4   5    2    3    2    1    10
+    G    -27  -18  -15  -12  -11  -10  -7   -2   -1   -5   1    -3   -3   6    1    2    3    0
 
 
+La matrice de traceback à partir des paramètres précedents, même indications que pour la matrice de score du dessus pour les matrices nucléotidiques.
 
-Matrice de scores :    # La matrice de score à partir des paramètres précedents, attention, pour les séquences
-                       # nucléotidiques, toute la séquence en légende à été mise en majuscule, et les U transformés en T.
-
-0    0    T    C    G    A    T    C    A    G    T    T    C    A    A    C    T    A    C
-0    0    -10  -11  -12  -13  -14  -15  -16  -17  -18  -19  -20  -21  -22  -23  -24  -25  -26
-A    -10  -1   -2   -3   -4   -5   -6   -7   -8   -9   -10  -11  -12  -13  -14  -15  -16  -17
-T    -11  -2   0    -1   -2   -2   -3   -4   -5   -6   -7   -8   -9   -10  -11  -12  -13  -14
-C    -12  -3   0    -1   -2   -1   0    -1   -2   -3   -4   -5   -6   -7   -8   -9   -10  -11
-T    -13  -4   -1   -1   -2   0    0    -1   -2   0    -1   -2   -3   -4   -5   -6   -7   -8
-T    -14  -5   -2   -2   -2   0    1    0    -1   0    2    1    0    -1   -2   -3   -4   -5
-C    -15  -6   -3   -3   -3   -1   2    1    0    0    1    4    3    2    1    0    -1   -2
-A    -16  -7   -4   -2   -1   -4   -2   4    3    -1   -1   0    6    5    4    3    2    1
-C    -17  -8   -5   -3   -2   0    -2   -3   3    4    0    1    -1   5    7    6    5    4
-T    -18  -9   -6   -4   -3   0    1    -3   -4   5    6    1    0    -2   6    9    8    7
-T    -19  -10  -7   -5   -4   -1   1    0    -4   -2   7    7    0    -1   -1   8    8    9
-C    -20  -11  -8   -6   -5   -2   1    0    -1   -3   -1   9    6    -1   1    0    7    10
-A    -21  -12  -9   -7   -4   -6   -3   3    1    -2   -4   -1   11   8    -2   0    2    6
-T    -22  -13  -10  -8   -5   -2   -5   -4   2    3    0    -3   1    10   9    0    -1   3
-T    -23  -14  -11  -9   -6   -3   -1   -6   -5   4    5    1    -4   0    11   11   1    0
-A    -24  -15  -12  -10  -7   -4   -2   1    -5   -6   4    4    3    -2   1    10   13   3
-C    -25  -16  -13  -11  -8   -5   -2   -3   0    -4   -5   6    3    2    0    2    9    15
-T    -26  -17  -14  -12  -9   -6   -3   -3   -4   2    -2   -4   5    2    3    2    1    10
-G    -27  -18  -15  -12  -11  -10  -7   -2   -1   -5   1    -3   -3   6    1    2    3    0
-
-
-Matrice de traceback :      # La matrice de traceback à partir des paramètres précedents, même indications que pour la
-                            # matrice de score du dessus pour les matrices nucléotidiques.
-
+                   Matrice de traceback : 
           T    C    G    A    T    C    A    G    T    T    C    A    A    C    T    A    C
      ✘    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←
-A    ↑    ↖    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←
-T    ↑    ↑    ↖    ←    ←    ↖    ←    ←    ←    ↖←   ↖←   ←    ←    ←    ←    ↖←   ←    ←
-C    ↑    ↑    ↖    ↖←   ↖←   ↖    ↖    ←    ←    ←    ←    ↖←   ←    ←    ↖←   ←    ←    ↖←
-T    ↑    ↑    ↑    ↖    ↖←   ↖    ↖    ↖←   ↖←   ↖    ↖←   ←    ←    ←    ←    ↖←   ←    ←
-T    ↑    ↑    ↑    ↖↑   ↖    ↖    ↖    ←    ←    ↖    ↖    ←    ←    ←    ←    ↖←   ←    ←
-C    ↑    ↑    ↖↑   ↖↑   ↖↑   ↖↑   ↖    ←    ←    ↖    ↖    ↖    ←    ←    ↖←   ←    ←    ↖←
-A    ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ←    ↖    ↖    ↖    ↖    ↖←   ←    ←    ↖←   ←
-C    ↑    ↑    ↖↑   ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ←    ←    ↖←
-T    ↑    ↑    ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ←    ←
-T    ↑    ↑    ↑    ↑    ↑    ↖↑   ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖
-C    ↑    ↑    ↖↑   ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖
-A    ↑    ↑    ↑    ↖↑   ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↑    ↖    ↖    ↖←   ↖    ↖    ↖
-T    ↑    ↑    ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↑    ↖    ↖←   ↖    ↖    ↖
-T    ↑    ↑    ↑    ↑    ↑    ↖↑   ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖↑   ↖    ↖    ←    ↖
-A    ↑    ↑    ↑    ↖↑   ↖↑   ↑    ↑    ↖    ↖    ↖↑   ↑    ↖    ↖    ↖    ↑    ↖↑   ↖    ←
-C    ↑    ↑    ↖↑   ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖
-T    ↑    ↑    ↑    ↑    ↑    ↖↑   ↑    ↖    ↖    ↖    ↖    ↖↑   ↖    ↖    ↖    ↖    ↖    ↖
-G    ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖↑
+    A    ↑    ↖    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←    ←
+    T    ↑    ↑    ↖    ←    ←    ↖    ←    ←    ←    ↖←   ↖←   ←    ←    ←    ←    ↖←   ←    ←
+    C    ↑    ↑    ↖    ↖←   ↖←   ↖    ↖    ←    ←    ←    ←    ↖←   ←    ←    ↖←   ←    ←    ↖←
+    T    ↑    ↑    ↑    ↖    ↖←   ↖    ↖    ↖←   ↖←   ↖    ↖←   ←    ←    ←    ←    ↖←   ←    ←
+    T    ↑    ↑    ↑    ↖↑   ↖    ↖    ↖    ←    ←    ↖    ↖    ←    ←    ←    ←    ↖←   ←    ←
+    C    ↑    ↑    ↖↑   ↖↑   ↖↑   ↖↑   ↖    ←    ←    ↖    ↖    ↖    ←    ←    ↖←   ←    ←    ↖←
+    A    ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ←    ↖    ↖    ↖    ↖    ↖←   ←    ←    ↖←   ←
+    C    ↑    ↑    ↖↑   ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ←    ←    ↖←
+    T    ↑    ↑    ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ←    ←
+    T    ↑    ↑    ↑    ↑    ↑    ↖↑   ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖
+    C    ↑    ↑    ↖↑   ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖
+    A    ↑    ↑    ↑    ↖↑   ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↑    ↖    ↖    ↖←   ↖    ↖    ↖
+    T    ↑    ↑    ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↑    ↖    ↖←   ↖    ↖    ↖
+    T    ↑    ↑    ↑    ↑    ↑    ↖↑   ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖↑   ↖    ↖    ←    ↖
+    A    ↑    ↑    ↑    ↖↑   ↖↑   ↑    ↑    ↖    ↖    ↖↑   ↑    ↖    ↖    ↖    ↑    ↖↑   ↖    ←
+    C    ↑    ↑    ↖↑   ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖
+    T    ↑    ↑    ↑    ↑    ↑    ↖↑   ↑    ↖    ↖    ↖    ↖    ↖↑   ↖    ↖    ↖    ↖    ↖    ↖
+    G    ↑    ↑    ↑    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖    ↖↑
 
 
-Alignement :    # Schéma représentant l'alignement
+Alignement : Schéma représentant l'alignement
 
         ATCuUCACTUCATtACTg
         .....||...||.. ...
@@ -241,7 +242,7 @@ Alignement :    # Schéma représentant l'alignement
  . missmatch
  - gap
 
-# Indications sur le nombre de match/missmatch/gaps ainsi que le score total de l'alignement
+Indications sur le nombre de match/missmatch/gaps ainsi que le score total de l'alignement
 Le nombre de match est de : 4
 Le nombre de missmatch est de : 13
 Le nombre de gaps est de : 1
@@ -250,7 +251,7 @@ Le score total cet alignement est de : 0
 
 
 
-V - Explication des principales fonctions utilisées (plus de details dans les commentaires du code)
+# V - Explication des principales fonctions utilisées (plus de details dans les commentaires du code)
 
 print_dictionnaire(dictionnaire) : Permet d'afficher des dictionnaires.
 print_matrice(mat) : Permet d'afficher des matrices.
@@ -261,8 +262,6 @@ renvoie une matrice de score, et une matrice de traceback.
 sscores_totaux(matrice_fleche, Seq1, Seq2, matrice_sub, gap_ouverture, gap_extension, alignement="nucleique") : Affiche
 une représentation visuelle de l'alignement, accompagnée de diverses informations (nombre de match/missmatch/gaps, score
 total de l'alignement)
-
-
 
 Ce programme à été réalisé dans le cadre d'un travail de bioinformatique à l'Université Claude-Bernard Lyon1.
 WEBER Antonin Etudiant L3 Bioinformatique, Statistique et Modélisation, Université Claude-Bernard, Lyon1.
