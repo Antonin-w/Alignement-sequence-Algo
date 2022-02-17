@@ -74,29 +74,24 @@ s1=CHEMIN/sequence1.fasta
 s2=CHEMIN/sequence2.fasta
 ```
 
-        -h ou --help : Comme indiqué precedemment, permet d'afficher la page d'aide
+-h ou --help : Comme indiqué precedemment, permet d'afficher la page d'aide
 ```bash
 ./CHEMIN/main.py s1 s2 -h
 ```
-        -o ou --ouverture : Permet de changer la penalite d'ouverture de gap (valeur par défaut = -10)      
+-o ou --ouverture : Permet de changer la penalite d'ouverture de gap (valeur par défaut = -10)      
 ```bash
 ./CHEMIN/main.py s1 s2 -o -11   # Indique une penalite d'ouverture de gap de -11
 ```
-        -e ou --extension : Permet de changer la penalite d'extension de gap (valeur par défaut = -1)
+-e ou --extension : Permet de changer la penalite d'extension de gap (valeur par défaut = -1)
 ```bash
 ./CHEMIN/main.py s1 s2 -e -2    # Indique une penalite d'extension de gap de -2
 ```
-        -a ou --alignement : Permet de renseigner le type de séquence à aligner
-                                Il y a uniquement deux choix à entrer : nucleique ou proteique
-                                Par défaut, le type de séquences à aligner est nucleique
+-a ou --alignement : Permet de renseigner le type de séquence à aligner. Il y a uniquement deux choix à entrer : nucleique ou proteique. Par défaut, le type de séquences à aligner est nucleique
 ```bash
 ./CHEMIN/main.py s1 s2 -a proteique     # Indique qu'il s'agit d'un alignement proteique, pas besoin de renseigner dans le cas d'un alignement nucleique
 ```                                            
 
-        -m ou --matrice  : Permet de renseigner un le chemin d'un fichier contenant une matrice de substitution personalisée
-                            La variable dans le fichier contenant la matrice de substitution doit impérativement
-                            s'appeler "matrice". Elle doit être de la forme dictionnaire dans dictionnaire. Le fichier doit
-                            être au format python.
+-m ou --matrice  : Permet de renseigner un le chemin d'un fichier contenant une matrice de substitution personalisée. La variable dans le fichier contenant la matrice de substitution doit impérativement s'appeler "matrice". Elle doit être de la forme dictionnaire dans dictionnaire. Le fichier doit être au format python.
 
 ```bash
 ./CHEMIN/main.py s1 s2 -m CHEMIN/FICHIER    # Remplacer FICHIER par le nom du fichier contenant la matrice
@@ -143,12 +138,12 @@ s2=CHEMIN/sequence2.fasta
                 "V":  {"A": 0, "R": -1, "N": -3, "D": -3, "C": -1, "Q": 1, "E": -2, "G": -3, "H": -3, "I": 3, "L": 1, "K": -2, "M": 1, "F": -1, "P": -2, "S": -2, "T": 0, "W": -3, "Y": -1, "V": 4}}
 
 
-        -l ou --local : En ajoutant ce paramètre, on peut obtenir un alignement local. Sans ce paramètre, par défaut ce sera un alignement global.
+-l ou --local : En ajoutant ce paramètre, on peut obtenir un alignement local. Sans ce paramètre, par défaut ce sera un alignement global.
 ```bash
 ./CHEMIN/main.py s1 s2 -l
 ```
 
-        -s ou --suprise : Permet d'avoir une surprise, elle fonctionne comme le "--help", il suffit simplement de renseigner "-s" ou "--surprise".
+-s ou --suprise : Permet d'avoir une surprise, elle fonctionne comme le "--help", il suffit simplement de renseigner "-s" ou "--surprise".
 ```bash
 ./CHEMIN/main.py s1 s2 -s
 ```
@@ -181,6 +176,7 @@ avec la matrice de substitution de base :
 Les premières lignes récapitulent les paramètres utilisés pour faire l'alignement :
 
 Les paramètres que vous avez choisis sont :
+
         Sequence 1       ATCuUCACTUCATtACTg                     # La première séquence
         Sequence 2       tcgATCAGuuCAACTAC                      # La deuxième séquence
 
@@ -300,6 +296,8 @@ total de l'alignement)
 
 
 Ce programme à été réalisé dans le cadre d'un travail de bioinformatique à l'Université Claude-Bernard Lyon1.
+
+
 WEBER Antonin Etudiant L3 Bioinformatique, Statistique et Modélisation, Université Claude-Bernard, Lyon1.
 
 
