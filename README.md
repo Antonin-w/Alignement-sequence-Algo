@@ -1,4 +1,4 @@
-% Algorithme d'alignement de séquences - Needleman-Wunsch (1970)
+# Algorithme d'alignement de séquences - Needleman-Wunsch (1970)
 
 
 Ce programme permet d'effectuer un alignement global de deux chaînes de caractères, pouvant être des séquences
