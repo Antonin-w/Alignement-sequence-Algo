@@ -1,4 +1,4 @@
-                  **Algorithme d'alignement de séquences - Needleman-Wunsch (1970)**
+                  Algorithme d'alignement de séquences - Needleman-Wunsch (1970)
 
 
 Ce programme permet d'effectuer un alignement global de deux chaînes de caractères, pouvant être des séquences
@@ -8,20 +8,21 @@ Il fonctionne sur l'algorithme de Needleman-Wunsch expliqué içi :
 
 Dans ce README, CHEMIN est à remplacer par le chemin menant au fichier.
 
-
-
 # I - Exécuter le programme et afficher l'aide
 
 Afin d'utiliser ce programme, il faut exécuter le main.py
 Pour cela, dans le terminal, entrez :
-    ./CHEMIN/main.py
-
+```bash
+./CHEMIN/main.py
+````
 Si vous obtenez le message d'erreur suivant : -bash: ./main.py: Permission denied
 C'est que vous n'avez pas autoriser l'exécution du fichier, pour cela, entrez la commande suivante :
      chmod +x CHEMIN/main.py
 
 Pour obtenir de l'aide via le shell, exécuter le fichier en ajoutant l'option -h ou --help :
-     ./CHEMIN/main.py --help
+```bash
+./CHEMIN/main.py --help
+```
                 usage: main.py [-h] [-o OUVERTURE] [-e EXTENSION] [-a {nucleique,proteique}]
                                [-m MATRICE] [-s]
                                s1 s2
@@ -58,8 +59,9 @@ Exemple d'un fichier format fasta :
      ATCuctacTACGTA
 
 Exemple de commande pour exécuter le programme avec uniquement les 2 arguments obligatoires :
-    ./CHEMIN/main.py CHEMIN/sequence1.fasta CHEMIN/sequence2.fasta
-
+```bash
+./CHEMIN/main.py CHEMIN/sequence1.fasta CHEMIN/sequence2.fasta
+````
 
 
 # III- Utiliser le programme avec des paramètres optionnels
@@ -88,7 +90,7 @@ Exemple de commande pour exécuter le programme avec uniquement les 2 arguments 
                        s'appeler "matrice". Elle doit être de la forme dictionnaire dans dictionnaire. Le fichier doit
                        être au format python.
 
-./CHEMIN/main.py s1 s2 -m CHEMIN/FICHIER    # Remplacer FICHIER par le nom du fichier contenant la matrice
+    ./CHEMIN/main.py s1 s2 -m CHEMIN/FICHIER    # Remplacer FICHIER par le nom du fichier contenant la matrice
 
                    Par défaut, la matrice pour l'alignement des séquences nucléotidique est la suivante :
                    	 A 	 {'A': 2, 'C': -1, 'G': 1, 'T': -1}
@@ -144,21 +146,26 @@ Exemple de commande pour exécuter le programme avec uniquement les 2 arguments 
 
 Si vous souhaitez faire un alignement global avec un penalite d'ouverture de gap de -5, d'extension de -2, de sequences
 protéiques avec la matrice de substitution Blosum62 :
-    ./CHEMIN/main.py s1 s2 -o -5 -e -2 -a proteique
-
+```bash
+./CHEMIN/main.py s1 s2 -o -5 -e -2 -a proteique
+```
 Si vous souhaitez faire un alignement global avec un penalite d'ouverture de gap de -8, d'extension de -1, de sequences
 nucleiques avec une matrice de substitution personalisée et une surprise à la fin :
-    ./CHEMIN/main.py s1 s2 -o -8 -m CHEMIN/FICHIER -s
+```bash
+./CHEMIN/main.py s1 s2 -o -8 -m CHEMIN/FICHIER -s
+```
 
 Si vous souhaitez faire un alignement locale avec en penalite de gap de -1, d'extension de -1, de séquence nucléotidiques
 avec la matrice de substitution de base :
-    ./CHEMIN/main.py s1 s2 -o -1 -l
-
-
+```bash
+./CHEMIN/main.py s1 s2 -o -1 -l
+```
 
 # IV - Interpretation des résultats
 
-    ./main.py sequence1.fasta sequence2.fasta
+```bash
+./main.py sequence1.fasta sequence2.fasta
+```
 
 Les premières lignes récapitulent les paramètres utilisés pour faire l'alignement :
 
@@ -175,7 +182,7 @@ Alignement global                                 # Le type d'alignement : globa
 La matrice de substitution utilisée
 
                    Matrice de substitution :
-                   A {'A': 2, 'C': -1, 'G': 1, 'T': -1}
+                   A   {'A': 2, 'C': -1, 'G': 1, 'T': -1}
                    C 	 {'A': -1, 'C': 2, 'G': -1, 'T': 1}
                    G 	 {'A': 1, 'C': -1, 'G': 2, 'T': -1}
                    T 	 {'A': -1, 'C': 1, 'G': -1, 'T': 2}
@@ -238,30 +245,48 @@ Alignement : Schéma représentant l'alignement
         tcgATCAGuuCAAC-TAC
 
  Legende :
- | match
- . missmatch
- - gap
+ 
+       | match
+       . missmatch
+       - gap
 
 Indications sur le nombre de match/missmatch/gaps ainsi que le score total de l'alignement
+
+
 Le nombre de match est de : 4
+
+
 Le nombre de missmatch est de : 13
+
+
 Le nombre de gaps est de : 1
+
+
 Le score total cet alignement est de : 0
-
-
-
 
 # V - Explication des principales fonctions utilisées (plus de details dans les commentaires du code)
 
 print_dictionnaire(dictionnaire) : Permet d'afficher des dictionnaires.
+
+
 print_matrice(mat) : Permet d'afficher des matrices.
+
+
 lecture_sequence(nom_du_fichier) : Permet de lire une séquence dans un fichier fasta pour la retourner en format str.
+
+
 scoring(a, b, matrice_sub) : Calcul le score entre 2 nucléotides (ou acides aminés) à l'aide d'une matrice de substitution.
+
+
 scoring_system(Seq1, Seq2, matrice_sub, gap_ouverture=-10, gap_extension=-1, alignement="nucleique") : Affiche et
 renvoie une matrice de score, et une matrice de traceback.
+
+
 sscores_totaux(matrice_fleche, Seq1, Seq2, matrice_sub, gap_ouverture, gap_extension, alignement="nucleique") : Affiche
 une représentation visuelle de l'alignement, accompagnée de diverses informations (nombre de match/missmatch/gaps, score
 total de l'alignement)
+
+
 
 Ce programme à été réalisé dans le cadre d'un travail de bioinformatique à l'Université Claude-Bernard Lyon1.
 WEBER Antonin Etudiant L3 Bioinformatique, Statistique et Modélisation, Université Claude-Bernard, Lyon1.
